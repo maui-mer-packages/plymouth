@@ -237,7 +237,7 @@ and headers needed to develop 3rd party splash plugins for Plymouth.
     --disable-tests \
     --disable-gtk \
     --disable-gdm-transition \
-    --with-logo=%{_datadir}/plymouth/splash.png \
+    --with-logo=%{_datadir}/pixmaps/system-logo-white.png \
     --with-background-start-color-stop=0x0073B3 \
     --with-background-end-color-stop=0x00457E \
     --with-background-color=0x3391cd \
