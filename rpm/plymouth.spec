@@ -270,6 +270,11 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/plymouth/themes/glow
 find $RPM_BUILD_ROOT -name '*.a' -exec rm -f {} \;
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} \;
 
+# Default configuration
+cat >$RPM_BUILD_ROOT%{_sysconfdir}/plymouth/plymouthd.conf <<EOF
+[Daemon]
+Theme=tribar
+EOF
 # << install post
 
 %post core-libs -p /sbin/ldconfig
