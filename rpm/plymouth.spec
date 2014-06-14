@@ -244,8 +244,6 @@ and headers needed to develop 3rd party splash plugins for Plymouth.
     --without-system-root-install \
     --without-log-viewer \
     --without-rhgb-compat-link \
-    --with-boot-tty=/dev/tty7 \
-    --with-shutdown-tty=/dev/tty1 \
     --with-release-file=/etc/os-release \
     --without-gdm-autostart-file
 
