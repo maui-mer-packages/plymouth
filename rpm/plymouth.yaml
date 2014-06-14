@@ -195,7 +195,7 @@ SubPackages:
       RequiresPost:
           - "%{name}-scripts"
       Requires:
-          - "%{name}-plugin-fade-throbber = %{name}-%{release}"
+          - "%{name}-plugin-fade-throbber = %{version}-%{release}"
       Files:
           - "%dir %{_datadir}/plymouth/themes/fade-in"
           - "%{_datadir}/plymouth/themes/fade-in/bullet.png"
@@ -212,7 +212,7 @@ SubPackages:
       RequiresPost:
           - "%{name}-scripts"
       Requires:
-          - "%{name}-plugin-two-step = %{name}-%{release}"
+          - "%{name}-plugin-two-step = %{version}-%{release}"
       Files:
           - "%dir %{_datadir}/plymouth/themes/spinner"
           - "%{_datadir}/plymouth/themes/spinner/*.png"
@@ -227,7 +227,7 @@ SubPackages:
       RequiresPost:
           - "%{name}-scripts"
       Requires:
-          - "%{name}-plugin-throbgress = %{name}-%{release}"
+          - "%{name}-plugin-throbgress = %{version}-%{release}"
       Files:
           - "%dir %{_datadir}/plymouth/themes/spinfinity"
           - "%{_datadir}/plymouth/themes/spinfinity/box.png"
@@ -245,7 +245,7 @@ SubPackages:
       RequiresPost:
           - "%{name}-scripts"
       Requires:
-          - "%{name}-plugin-space-flares = %{name}-%{release}"
+          - "%{name}-plugin-space-flares = %{version}-%{release}"
       Files:
           - "%dir %{_datadir}/plymouth/themes/solar"
           - "%{_datadir}/plymouth/themes/solar/*.png"
@@ -260,7 +260,7 @@ SubPackages:
       RequiresPost:
           - "%{name}-scripts"
       Requires:
-          - "%{name}-plugin-script = %{name}-%{release}"
+          - "%{name}-plugin-script = %{version}-%{release}"
       Files:
           - "%dir %{_datadir}/plymouth/themes/script"
           - "%{_datadir}/plymouth/themes/script/*.png"

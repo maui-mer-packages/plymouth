@@ -152,7 +152,7 @@ plugin.
 Summary:    Plymouth "Fade-In" theme
 Group:      System/Base
 Requires:   %{name} = %{version}-%{release}
-Requires:   %{name}-plugin-fade-throbber = %{name}-%{release}
+Requires:   %{name}-plugin-fade-throbber = %{version}-%{release}
 Requires(post): %{name}-scripts
 
 %description theme-fade-in
@@ -165,7 +165,7 @@ while stars twinkle around the logo during system boot up.
 Summary:    Plymouth "Spinner" theme
 Group:      System/Base
 Requires:   %{name} = %{version}-%{release}
-Requires:   %{name}-plugin-two-step = %{name}-%{release}
+Requires:   %{name}-plugin-two-step = %{version}-%{release}
 Requires(post): %{name}-scripts
 
 %description theme-spinner
@@ -177,7 +177,7 @@ Plymouth. It features a small spinner on a dark background.
 Summary:    Plymouth "Spinfinity" theme
 Group:      System/Base
 Requires:   %{name} = %{version}-%{release}
-Requires:   %{name}-plugin-throbgress = %{name}-%{release}
+Requires:   %{name}-plugin-throbgress = %{version}-%{release}
 Requires(post): %{name}-scripts
 
 %description theme-spinfinity
@@ -190,7 +190,7 @@ spins in the shape of an infinity sign.
 Summary:    Plymouth "Solar" theme
 Group:      System/Base
 Requires:   %{name} = %{version}-%{release}
-Requires:   %{name}-plugin-space-flares = %{name}-%{release}
+Requires:   %{name}-plugin-space-flares = %{version}-%{release}
 Requires(post): %{name}-scripts
 
 %description theme-solar
@@ -202,7 +202,7 @@ Plymouth. It features a blue flamed sun with animated solar flares.
 Summary:    Plymouth "Script" theme
 Group:      System/Base
 Requires:   %{name} = %{version}-%{release}
-Requires:   %{name}-plugin-script = %{name}-%{release}
+Requires:   %{name}-plugin-script = %{version}-%{release}
 Requires(post): %{name}-scripts
 
 %description theme-script
