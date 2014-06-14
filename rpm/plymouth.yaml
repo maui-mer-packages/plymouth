@@ -1,0 +1,283 @@
+Name        : plymouth
+Version     : 0.9.0
+Release     : 1
+Group       : System/Base
+License     : GPL-2.0+
+Summary     : Graphical Boot Animation and Logger
+Description : |
+  Plymouth provides an attractive graphical boot animation in
+  place of the text messages that normally get shown.  Text
+  messages are instead redirected to a log file for viewing
+  after boot.
+URL         : http://freedesktop.org/software/plymouth/releases
+Sources     :
+    - "%{name}-%{version}.tar.xz"
+SetupOptions: -q -n %{name}-%{version}/upstream
+
+PkgBR:
+    - automake
+    - libtool
+    - docbook-style-xsl
+    - xz
+    - systemd
+PkgConfigBR:
+    - systemd
+    - libdrm
+    - libpng
+    - libxslt
+    - pango
+    - pangocairo
+
+Macros:
+    - plymouthdaemon_execdir;%{_sbindir}
+    - plymouthclient_execdir;%{_bindir}
+    - plymouth_libdir;%{_libdir}
+    - plymouth_initrd_file;/boot/initrd-plymouth.img
+
+RequiresPost:
+    - systemd
+    - "%{name}-scripts"
+RequiresPreUn:
+    - systemd
+RequiresPostUn:
+    - systemd
+
+Configure: reconfigure
+ConfigOptions: 
+    - --enable-systemd-integration
+    - --enable-tracing
+    - --disable-tests
+    - --disable-gtk
+    - --disable-gdm-transition
+    - --with-logo=%{_datadir}/plymouth/splash.png
+    - --with-background-start-color-stop=0x0073B3
+    - --with-background-end-color-stop=0x00457E
+    - --with-background-color=0x3391cd
+    - --without-system-root-install
+    - --without-log-viewer
+    - --without-rhgb-compat-link
+    - --with-boot-tty=/dev/tty7
+    - --with-shutdown-tty=/dev/tty1
+    - --with-release-file=/etc/os-release
+    - --without-gdm-autostart-file
+
+Files:
+    - "%doc AUTHORS NEWS README"
+    - "%dir %{_datadir}/plymouth"
+    - "%dir %{_datadir}/plymouth/themes"
+    - "%dir %{_datadir}/plymouth/themes/details"
+    - "%dir %{_datadir}/plymouth/themes/text"
+    - "%dir %{_libexecdir}/plymouth"
+    - "%dir %{_localstatedir}/lib/plymouth"
+    - "%dir %{_libdir}/plymouth/renderers"
+    - "%dir %{_sysconfdir}/plymouth"
+    - "%config(noreplace) %{_sysconfdir}/plymouth/plymouthd.conf"
+    - "%{plymouthdaemon_execdir}/plymouthd"
+    - "%{plymouthclient_execdir}/plymouth"
+    - "%{_libdir}/plymouth/details.so"
+    - "%{_libdir}/plymouth/text.so"
+    - "%{_libdir}/plymouth/tribar.so"
+    - "%{_libdir}/plymouth/renderers/drm*"
+    - "%{_libdir}/plymouth/renderers/frame-buffer*"
+    - "%{_datadir}/plymouth/themes/details/details.plymouth"
+    - "%{_datadir}/plymouth/themes/text/text.plymouth"
+    - "%{_datadir}/plymouth/themes/tribar/tribar.plymouth"
+    - "%{_datadir}/plymouth/plymouthd.defaults"
+    - "%{_localstatedir}/run/plymouth"
+    - "%{_localstatedir}/spool/plymouth"
+    - "%{_mandir}/man?/*"
+    - "%{_unitdir}/*"
+
+SubPackages:
+    - Name: core-libs
+      Summary: Plymouth core libraries
+      Group: Development/Libraries
+      Description: |
+        This package contains the libply and libply-splash-core libraries
+        used by Plymouth.
+      Files:
+          - "%{plymouth_libdir}/libply.so.*"
+          - "%{plymouth_libdir}/libply-splash-core.so.*"
+          - "%{_libdir}/libply-boot-client.so.*"
+          - "%dir %{_libdir}/plymouth"
+    - Name: graphical-libs
+      Summary: Plymouth graphics libraries
+      Group: Development/Libraries
+      Description: |
+        This package contains the libply-splash-graphics library
+        used by graphical Plymouth splashes.
+      Files:
+         - "%{_libdir}/libply-splash-graphics.so.*"
+
+    - Name: scripts
+      Summary: Plymouth related scripts
+      Group: Applications/System
+      Description: |
+        This package contains scripts that help integrate Plymouth with
+        the system.
+      Requires:
+          - dracut
+      Files:
+          - "%{_sbindir}/plymouth-set-default-theme"
+          - "%{_libexecdir}/plymouth/plymouth-update-initrd"
+          - "%{_libexecdir}/plymouth/plymouth-generate-initrd"
+          - "%{_libexecdir}/plymouth/plymouth-populate-initrd"
+
+    - Name: plugin-label
+      Summary: Plymouth label plugin
+      Group: System/Base
+      Description: |
+        This package contains the label control plugin for
+        Plymouth. It provides the ability to render text on
+        graphical boot splashes using pango and cairo.
+      Files:
+         - "%{_libdir}/plymouth/label.so"
+    - Name: plugin-fade-throbber
+      Summary: Plymouth "Fade-Throbber" plugin
+      Group: System/Base
+      Description: |
+        This package contains the "Fade-In" boot splash plugin for
+        Plymouth. It features a centered image that fades in and out
+        while other images pulsate around during system boot up.
+      Files:
+         - "%{_libdir}/plymouth/fade-throbber.so"
+    - Name: plugin-throbgress
+      Summary: Plymouth "Throbgress" plugin
+      Group: System/Base
+      Description: |
+        This package contains the "throbgress" boot splash plugin for
+        Plymouth. It features a centered logo and animated spinner that
+        spins repeatedly while a progress bar advances at the bottom of
+        the screen.
+      Requires:
+          - "%{name}-plugin-label"
+      Files:
+         - "%{_libdir}/plymouth/throbgress.so"
+    - Name: plugin-space-flares
+      Summary: Plymouth "space-flares" plugin
+      Group: System/Base
+      Description: |
+        This package contains the "space-flares" boot splash plugin for
+        Plymouth. It features a corner image with animated flares.
+      Requires:
+          - "%{name}-plugin-label"
+      Files:
+         - "%{_libdir}/plymouth/space-flares.so"
+    - Name: plugin-two-step
+      Summary: Plymouth "two-step" plugin
+      Group: System/Base
+      Description: |
+        This package contains the "two-step" boot splash plugin for
+        Plymouth. It features a two phased boot process that starts with
+        a progressing animation synced to boot time and finishes with a
+        short, fast one-shot animation.
+      Requires:
+          - "%{name}-plugin-label"
+      Files:
+         - "%{_libdir}/plymouth/two-step.so"
+    - Name: plugin-script
+      Summary: Plymouth "Script" plugin
+      Group: System/Base
+      Description: |
+        This package contains the "script" boot splash theme for
+        Plymouth. It it is a simple example theme the uses the "script"
+        plugin.
+      Files:
+         - "%{_libdir}/plymouth/script.so"
+
+    - Name: theme-fade-in
+      Summary: Plymouth "Fade-In" theme
+      Group: System/Base
+      Description: |
+        This package contains the "Fade-In" boot splash theme for
+        Plymouth. It features a centered logo that fades in and out
+        while stars twinkle around the logo during system boot up.
+      RequiresPost:
+          - "%{name}-scripts"
+      Requires:
+          - "%{name}-plugin-fade-throbber = %{name}-%{release}"
+      Files:
+          - "%dir %{_datadir}/plymouth/themes/fade-in"
+          - "%{_datadir}/plymouth/themes/fade-in/bullet.png"
+          - "%{_datadir}/plymouth/themes/fade-in/entry.png"
+          - "%{_datadir}/plymouth/themes/fade-in/lock.png"
+          - "%{_datadir}/plymouth/themes/fade-in/star.png"
+          - "%{_datadir}/plymouth/themes/fade-in/fade-in.plymouth"
+    - Name: theme-spinner
+      Summary: Plymouth "Spinner" theme
+      Group: System/Base
+      Description: |
+        This package contains the "spinner" boot splash theme for
+        Plymouth. It features a small spinner on a dark background.
+      RequiresPost:
+          - "%{name}-scripts"
+      Requires:
+          - "%{name}-plugin-two-step = %{name}-%{release}"
+      Files:
+          - "%dir %{_datadir}/plymouth/themes/spinner"
+          - "%{_datadir}/plymouth/themes/spinner/*.png"
+          - "%{_datadir}/plymouth/themes/spinner/spinner.plymouth"
+    - Name: theme-spinfinity
+      Summary: Plymouth "Spinfinity" theme
+      Group: System/Base
+      Description: |
+          This package contains the "Spinfinity" boot splash theme for
+          Plymouth. It features a centered logo and animated spinner that
+          spins in the shape of an infinity sign.
+      RequiresPost:
+          - "%{name}-scripts"
+      Requires:
+          - "%{name}-plugin-throbgress = %{name}-%{release}"
+      Files:
+          - "%dir %{_datadir}/plymouth/themes/spinfinity"
+          - "%{_datadir}/plymouth/themes/spinfinity/box.png"
+          - "%{_datadir}/plymouth/themes/spinfinity/bullet.png"
+          - "%{_datadir}/plymouth/themes/spinfinity/entry.png"
+          - "%{_datadir}/plymouth/themes/spinfinity/lock.png"
+          - "%{_datadir}/plymouth/themes/spinfinity/throbber-[0-3][0-9].png"
+          - "%{_datadir}/plymouth/themes/spinfinity/spinfinity.plymouth"
+    - Name: theme-solar
+      Summary: Plymouth "Solar" theme
+      Group: System/Base
+      Description: |
+        This package contains the "Solar" boot splash theme for
+        Plymouth. It features a blue flamed sun with animated solar flares.
+      RequiresPost:
+          - "%{name}-scripts"
+      Requires:
+          - "%{name}-plugin-space-flares = %{name}-%{release}"
+      Files:
+          - "%dir %{_datadir}/plymouth/themes/solar"
+          - "%{_datadir}/plymouth/themes/solar/*.png"
+          - "%{_datadir}/plymouth/themes/solar/solar.plymouth"
+    - Name: theme-script
+      Summary: Plymouth "Script" theme
+      Group: System/Base
+      Description: |
+        This package contains the "script" boot splash theme for
+        Plymouth. It it is a simple example theme the uses the "script"
+        plugin.
+      RequiresPost:
+          - "%{name}-scripts"
+      Requires:
+          - "%{name}-plugin-script = %{name}-%{release}"
+      Files:
+          - "%dir %{_datadir}/plymouth/themes/script"
+          - "%{_datadir}/plymouth/themes/script/*.png"
+          - "%{_datadir}/plymouth/themes/script/script.script"
+          - "%{_datadir}/plymouth/themes/script/script.plymouth"
+    - Name: devel
+      Summary: Libraries and headers for writing Plymouth splash plugins
+      Group: Development/Libraries
+      Description: |
+        This package contains the libply and libplybootsplash libraries
+        and headers needed to develop 3rd party splash plugins for Plymouth.
+      Files:
+          - "%{plymouth_libdir}/libply.so"
+          - "%{plymouth_libdir}/libply-splash-core.so"
+          - "%{_libdir}/libply-boot-client.so"
+          - "%{_libdir}/libply-splash-graphics.so"
+          - "%{_libdir}/pkgconfig/ply-splash-core.pc"
+          - "%{_libdir}/pkgconfig/ply-splash-graphics.pc"
+          - "%{_libdir}/pkgconfig/ply-boot-client.pc"
+          - "%{_includedir}/plymouth-1"
