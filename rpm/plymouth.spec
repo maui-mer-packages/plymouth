@@ -269,9 +269,9 @@ find $RPM_BUILD_ROOT -name '*.a' -exec rm -f {} \;
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} \;
 
 # Default configuration
-cat >$RPM_BUILD_ROOT%{_sysconfdir}/plymouth/plymouthd.conf <<EOF
+cat >$RPM_BUILD_ROOT%{_datadir}/plymouth/plymouthd.defaults <<EOF
 [Daemon]
-Theme=tribar
+Theme=text
 EOF
 # << install post
 
