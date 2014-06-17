@@ -161,6 +161,19 @@ Plymouth. It features a centered logo that fades in and out
 while stars twinkle around the logo during system boot up.
 
 
+%package theme-glow
+Summary:    Plymouth "Glow" theme
+Group:      System/Base
+Requires:   %{name} = %{version}-%{release}
+Requires:   %{name}-plugin-two-step = %{version}-%{release}
+Requires(post): %{name}-scripts
+
+%description theme-glow
+This package contains the "Glow" boot splash theme for
+Plymouth. It features a corporate theme with pie chart boot
+progress followed by a glowing emerging logo.
+
+
 %package theme-spinner
 Summary:    Plymouth "Spinner" theme
 Group:      System/Base
@@ -259,11 +272,6 @@ rm -rf %{buildroot}
 %make_install
 
 # >> install post
-# Glow isn't quite ready for primetime
-rm -rf $RPM_BUILD_ROOT%{_datadir}/plymouth/glow/
-rm -f $RPM_BUILD_ROOT%{_libdir}/plymouth/glow.so
-rm -rf $RPM_BUILD_ROOT%{_datadir}/plymouth/themes/glow
-
 # No static libraries, please
 find $RPM_BUILD_ROOT -name '*.a' -exec rm -f {} \;
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} \;
@@ -293,6 +301,17 @@ if [ "$(%{_sbindir}/plymouth-set-default-theme)" == "fade-in" ]; then
 fi
 fi
 # << postun theme-fade-in
+
+%postun theme-glow
+# >> postun theme-glow
+export LIB=%{_lib}
+if [ $1 -eq 0 ]; then
+if [ "$(%{_sbindir}/plymouth-set-default-theme)" == "glow" ]; then
+%{_sbindir}/plymouth-set-default-theme --reset
+%{_libexecdir}/plymouth/plymouth-generate-initrd
+fi
+fi
+# << postun theme-glow
 
 %postun theme-spinner
 # >> postun theme-spinner
@@ -427,6 +446,14 @@ fi
 %{_datadir}/plymouth/themes/fade-in/fade-in.plymouth
 # >> files theme-fade-in
 # << files theme-fade-in
+
+%files theme-glow
+%defattr(-,root,root,-)
+%dir %{_datadir}/plymouth/themes/glow
+%{_datadir}/plymouth/themes/glow/*.png
+%{_datadir}/plymouth/themes/glow/glow.plymouth
+# >> files theme-glow
+# << files theme-glow
 
 %files theme-spinner
 %defattr(-,root,root,-)

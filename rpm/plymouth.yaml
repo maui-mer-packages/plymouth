@@ -201,6 +201,21 @@ SubPackages:
           - "%{_datadir}/plymouth/themes/fade-in/lock.png"
           - "%{_datadir}/plymouth/themes/fade-in/star.png"
           - "%{_datadir}/plymouth/themes/fade-in/fade-in.plymouth"
+    - Name: theme-glow
+      Summary: Plymouth "Glow" theme
+      Group: System/Base
+      Description: |
+        This package contains the "Glow" boot splash theme for
+        Plymouth. It features a corporate theme with pie chart boot
+        progress followed by a glowing emerging logo.
+      RequiresPost:
+          - "%{name}-scripts"
+      Requires:
+          - "%{name}-plugin-two-step = %{version}-%{release}"
+      Files:
+          - "%dir %{_datadir}/plymouth/themes/glow"
+          - "%{_datadir}/plymouth/themes/glow/*.png"
+          - "%{_datadir}/plymouth/themes/glow/glow.plymouth"
     - Name: theme-spinner
       Summary: Plymouth "Spinner" theme
       Group: System/Base
