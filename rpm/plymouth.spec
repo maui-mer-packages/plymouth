@@ -360,6 +360,7 @@ fi
 %dir %{_libdir}/plymouth/renderers
 %dir %{_sysconfdir}/plymouth
 %config(noreplace) %{_sysconfdir}/plymouth/plymouthd.conf
+%config %{_datadir}/plymouth/plymouthd.defaults
 %{plymouthdaemon_execdir}/plymouthd
 %{plymouthclient_execdir}/plymouth
 %{_libdir}/plymouth/details.so
@@ -370,7 +371,6 @@ fi
 %{_datadir}/plymouth/themes/details/details.plymouth
 %{_datadir}/plymouth/themes/text/text.plymouth
 %{_datadir}/plymouth/themes/tribar/tribar.plymouth
-%{_datadir}/plymouth/plymouthd.defaults
 %{_localstatedir}/run/plymouth
 %{_localstatedir}/spool/plymouth
 %{_mandir}/man?/*
