@@ -278,6 +278,8 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} \;
 
 # Default configuration
 cat >$RPM_BUILD_ROOT%{_datadir}/plymouth/plymouthd.defaults <<EOF
+# Distribution defaults. Changes to this file will get overwritten during
+# upgrades.
 [Daemon]
 Theme=tribar
 EOF
