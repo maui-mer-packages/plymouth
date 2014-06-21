@@ -67,6 +67,15 @@ This package contains the libply-splash-graphics library
 used by graphical Plymouth splashes.
 
 
+%package system-theme
+Summary:    Plymouth default theme
+Group:      Applications/System
+Requires:   %{name} = %{version}-%{release}
+
+%description system-theme
+This package installs the default Plymouth theme.
+
+
 %package scripts
 Summary:    Plymouth related scripts
 Group:      Applications/System
@@ -360,7 +369,6 @@ fi
 %dir %{_libdir}/plymouth/renderers
 %dir %{_sysconfdir}/plymouth
 %config(noreplace) %{_sysconfdir}/plymouth/plymouthd.conf
-%config %{_datadir}/plymouth/plymouthd.defaults
 %{plymouthdaemon_execdir}/plymouthd
 %{plymouthclient_execdir}/plymouth
 %{_libdir}/plymouth/details.so
@@ -392,6 +400,12 @@ fi
 %{_libdir}/libply-splash-graphics.so.*
 # >> files graphical-libs
 # << files graphical-libs
+
+%files system-theme
+%defattr(-,root,root,-)
+%{_datadir}/plymouth/plymouthd.defaults
+# >> files system-theme
+# << files system-theme
 
 %files scripts
 %defattr(-,root,root,-)
