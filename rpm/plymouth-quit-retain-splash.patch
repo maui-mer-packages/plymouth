@@ -1,0 +1,29 @@
+From 5ed576ec74062d82c842b0acdf91e820bc140983 Mon Sep 17 00:00:00 2001
+From: Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+Date: Mon, 23 Jun 2014 02:02:22 +0000
+Subject: [PATCH] systemd: Retain splash when plymouth quits
+
+This makes display manager integration much easier.
+Display manager's unit usually start after plymouth-quit.service
+which with this patch retains splash, this spares the integration
+work on the DM side.
+---
+ systemd-units/plymouth-quit.service.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/systemd-units/plymouth-quit.service.in b/systemd-units/plymouth-quit.service.in
+index 24c11bb..8d30e5c 100644
+--- a/systemd-units/plymouth-quit.service.in
++++ b/systemd-units/plymouth-quit.service.in
+@@ -3,7 +3,7 @@ Description=Terminate Plymouth Boot Screen
+ After=rc-local.service plymouth-start.service systemd-user-sessions.service
+ 
+ [Service]
+-ExecStart=-@PLYMOUTH_CLIENT_DIR@/plymouth quit
++ExecStart=-@PLYMOUTH_CLIENT_DIR@/plymouth quit --retain-splash
+ Type=oneshot
+ TimeoutSec=20
+ [Install]
+-- 
+1.8.3-rc3
+

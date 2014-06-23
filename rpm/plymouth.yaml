@@ -12,6 +12,8 @@ Description : |
 URL         : http://freedesktop.org/software/plymouth/releases
 Sources     :
     - "%{name}-%{version}.tar.xz"
+Patches     :
+    - plymouth-quit-retain-splash.patch
 SetupOptions: -q -n %{name}-%{version}/upstream
 
 PkgBR:

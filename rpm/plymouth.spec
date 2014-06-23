@@ -18,6 +18,7 @@ License:    GPL-2.0+
 URL:        http://freedesktop.org/software/plymouth/releases
 Source0:    %{name}-%{version}.tar.xz
 Source100:  plymouth.yaml
+Patch0:     plymouth-quit-retain-splash.patch
 Requires(preun): systemd
 Requires(post): systemd
 Requires(post): %{name}-scripts
@@ -244,6 +245,8 @@ and headers needed to develop 3rd party splash plugins for Plymouth.
 %prep
 %setup -q -n %{name}-%{version}/upstream
 
+# plymouth-quit-retain-splash.patch
+%patch0 -p1
 # >> setup
 # << setup
 
