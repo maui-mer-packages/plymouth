@@ -31,8 +31,6 @@ PkgConfigBR:
 Macros:
     - plymouthdaemon_execdir;%{_sbindir}
     - plymouthclient_execdir;%{_bindir}
-    - plymouth_libdir;%{_libdir}
-    - plymouth_initrd_file;/boot/initrd-plymouth.img
 
 RequiresPost:
     - systemd
@@ -93,8 +91,8 @@ SubPackages:
         This package contains the libply and libply-splash-core libraries
         used by Plymouth.
       Files:
-          - "%{plymouth_libdir}/libply.so.*"
-          - "%{plymouth_libdir}/libply-splash-core.so.*"
+          - "%{_libdir}/libply.so.*"
+          - "%{_libdir}/libply-splash-core.so.*"
           - "%{_libdir}/libply-boot-client.so.*"
           - "%dir %{_libdir}/plymouth"
     - Name: graphical-libs
@@ -293,8 +291,8 @@ SubPackages:
         This package contains the libply and libplybootsplash libraries
         and headers needed to develop 3rd party splash plugins for Plymouth.
       Files:
-          - "%{plymouth_libdir}/libply.so"
-          - "%{plymouth_libdir}/libply-splash-core.so"
+          - "%{_libdir}/libply.so"
+          - "%{_libdir}/libply-splash-core.so"
           - "%{_libdir}/libply-boot-client.so"
           - "%{_libdir}/libply-splash-graphics.so"
           - "%{_libdir}/pkgconfig/ply-splash-core.pc"

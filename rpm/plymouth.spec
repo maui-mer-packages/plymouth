@@ -8,8 +8,6 @@ Name:       plymouth
 # >> macros
 # << macros
 %define plymouthclient_execdir %{_bindir}
-%define plymouth_initrd_file /boot/initrd-plymouth.img
-%define plymouth_libdir %{_libdir}
 %define plymouthdaemon_execdir %{_sbindir}
 
 Summary:    Graphical Boot Animation and Logger
@@ -388,8 +386,8 @@ fi
 
 %files core-libs
 %defattr(-,root,root,-)
-%{plymouth_libdir}/libply.so.*
-%{plymouth_libdir}/libply-splash-core.so.*
+%{_libdir}/libply.so.*
+%{_libdir}/libply-splash-core.so.*
 %{_libdir}/libply-boot-client.so.*
 %dir %{_libdir}/plymouth
 # >> files core-libs
@@ -510,8 +508,8 @@ fi
 
 %files devel
 %defattr(-,root,root,-)
-%{plymouth_libdir}/libply.so
-%{plymouth_libdir}/libply-splash-core.so
+%{_libdir}/libply.so
+%{_libdir}/libply-splash-core.so
 %{_libdir}/libply-boot-client.so
 %{_libdir}/libply-splash-graphics.so
 %{_libdir}/pkgconfig/ply-splash-core.pc
