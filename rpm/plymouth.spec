@@ -19,6 +19,7 @@ URL:        http://freedesktop.org/software/plymouth/releases
 Source0:    %{name}-%{version}.tar.xz
 Source100:  plymouth.yaml
 Patch0:     plymouth-quit-retain-splash.patch
+Requires:   %{name}-system-theme
 Requires(preun): systemd
 Requires(post): systemd
 Requires(post): %{name}-scripts
@@ -69,7 +70,7 @@ used by graphical Plymouth splashes.
 %package system-theme
 Summary:    Plymouth default theme
 Group:      Applications/System
-Requires:   %{name} = %{version}-%{release}
+BuildArch:  noarch
 
 %description system-theme
 This package installs the default Plymouth theme.
