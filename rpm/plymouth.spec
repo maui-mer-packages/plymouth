@@ -79,6 +79,7 @@ This package installs the default Plymouth theme.
 %package scripts
 Summary:    Plymouth related scripts
 Group:      Applications/System
+BuildArch:  noarch
 Requires:   %{name} = %{version}-%{release}
 Requires:   dracut
 
@@ -160,6 +161,7 @@ plugin.
 %package theme-fade-in
 Summary:    Plymouth "Fade-In" theme
 Group:      System/Base
+BuildArch:  noarch
 Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-plugin-fade-throbber = %{version}-%{release}
 Requires(post): %{name}-scripts
@@ -173,6 +175,7 @@ while stars twinkle around the logo during system boot up.
 %package theme-glow
 Summary:    Plymouth "Glow" theme
 Group:      System/Base
+BuildArch:  noarch
 Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-plugin-two-step = %{version}-%{release}
 Requires(post): %{name}-scripts
@@ -186,6 +189,7 @@ progress followed by a glowing emerging logo.
 %package theme-spinner
 Summary:    Plymouth "Spinner" theme
 Group:      System/Base
+BuildArch:  noarch
 Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-plugin-two-step = %{version}-%{release}
 Requires(post): %{name}-scripts
@@ -198,6 +202,7 @@ Plymouth. It features a small spinner on a dark background.
 %package theme-spinfinity
 Summary:    Plymouth "Spinfinity" theme
 Group:      System/Base
+BuildArch:  noarch
 Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-plugin-throbgress = %{version}-%{release}
 Requires(post): %{name}-scripts
@@ -211,6 +216,7 @@ spins in the shape of an infinity sign.
 %package theme-solar
 Summary:    Plymouth "Solar" theme
 Group:      System/Base
+BuildArch:  noarch
 Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-plugin-space-flares = %{version}-%{release}
 Requires(post): %{name}-scripts
@@ -223,6 +229,7 @@ Plymouth. It features a blue flamed sun with animated solar flares.
 %package theme-script
 Summary:    Plymouth "Script" theme
 Group:      System/Base
+BuildArch:  noarch
 Requires:   %{name} = %{version}-%{release}
 Requires:   %{name}-plugin-script = %{version}-%{release}
 Requires(post): %{name}-scripts

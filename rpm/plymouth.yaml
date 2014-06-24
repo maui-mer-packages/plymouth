@@ -119,6 +119,7 @@ SubPackages:
           - "%{_datadir}/plymouth/plymouthd.defaults"
 
     - Name: scripts
+      BuildArch: noarch
       Summary: Plymouth related scripts
       Group: Applications/System
       Description: |
@@ -195,6 +196,7 @@ SubPackages:
          - "%{_libdir}/plymouth/script.so"
 
     - Name: theme-fade-in
+      BuildArch: noarch
       Summary: Plymouth "Fade-In" theme
       Group: System/Base
       Description: |
@@ -213,6 +215,7 @@ SubPackages:
           - "%{_datadir}/plymouth/themes/fade-in/star.png"
           - "%{_datadir}/plymouth/themes/fade-in/fade-in.plymouth"
     - Name: theme-glow
+      BuildArch: noarch
       Summary: Plymouth "Glow" theme
       Group: System/Base
       Description: |
@@ -228,6 +231,7 @@ SubPackages:
           - "%{_datadir}/plymouth/themes/glow/*.png"
           - "%{_datadir}/plymouth/themes/glow/glow.plymouth"
     - Name: theme-spinner
+      BuildArch: noarch
       Summary: Plymouth "Spinner" theme
       Group: System/Base
       Description: |
@@ -242,6 +246,7 @@ SubPackages:
           - "%{_datadir}/plymouth/themes/spinner/*.png"
           - "%{_datadir}/plymouth/themes/spinner/spinner.plymouth"
     - Name: theme-spinfinity
+      BuildArch: noarch
       Summary: Plymouth "Spinfinity" theme
       Group: System/Base
       Description: |
@@ -261,6 +266,7 @@ SubPackages:
           - "%{_datadir}/plymouth/themes/spinfinity/throbber-[0-3][0-9].png"
           - "%{_datadir}/plymouth/themes/spinfinity/spinfinity.plymouth"
     - Name: theme-solar
+      BuildArch: noarch
       Summary: Plymouth "Solar" theme
       Group: System/Base
       Description: |
@@ -275,6 +281,7 @@ SubPackages:
           - "%{_datadir}/plymouth/themes/solar/*.png"
           - "%{_datadir}/plymouth/themes/solar/solar.plymouth"
     - Name: theme-script
+      BuildArch: noarch
       Summary: Plymouth "Script" theme
       Group: System/Base
       Description: |
@@ -290,6 +297,7 @@ SubPackages:
           - "%{_datadir}/plymouth/themes/script/*.png"
           - "%{_datadir}/plymouth/themes/script/script.script"
           - "%{_datadir}/plymouth/themes/script/script.plymouth"
+
     - Name: devel
       Summary: Libraries and headers for writing Plymouth splash plugins
       Group: Development/Libraries
